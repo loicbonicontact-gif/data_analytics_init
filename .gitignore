@@ -1,6 +1,5 @@
-# Donnees : le dossier est suivi, son contenu ne l'est pas
-data/*
-!data/.gitkeep
+# Exclure le dossier data et tout son contenu (donnees, jamais sur GitHub)
+/data/
 
 # Fichiers systeme et temporaires
 .DS_Store
