@@ -8,3 +8,4 @@ terminal, de Git et de GitHub.
 - src/ : scripts Python
 - data/ : jeux de données, exclus du dépôt via .gitignore
 - notes.txt : journal de bord de l'activité 1
+Ce fichier sera modifie plus tard pour tester le suivi des versions.
