@@ -86,8 +86,8 @@ def charger_donnees_csv(chemin_fichier):
                 continue
             
             try:
-                # On lit la TROISIEME colonne (index 2) où se trouvent les montants
-                valeur_str = ligne[2].replace(',', '.')
+                # On lit la DEUXIEME colonne (index 1) où se trouvent les montants
+                valeur_str = ligne[1].replace(',', '.')
                 montant = float(valeur_str)
                 transactions.append(montant)
             except (ValueError, IndexError):
