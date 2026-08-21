@@ -1,10 +1,2 @@
-# Projet Onboarding Data Analyst
-
-## Objectif
-Dépôt des livrables de l'onboarding Data Analyst : prise en main du
-terminal, de Git et de GitHub.
-
-## Structure du projet
-- src/ : scripts Python
-- data/ : jeux de données, exclus du dépôt via .gitignore
-- notes.txt : journal de bord de l'activité 1
+# Onboarding Data Analyst - DataCorp
+Ce projet contient mes premiers scripts de configuration et d'analyse.
