@@ -1,5 +1,5 @@
 """Sales transaction statistical analysis (analyser_ventes)."""
-
+""" bonjour loic boni voici les changements que j'ai fait """
 import csv
 import os
 
