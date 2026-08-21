@@ -1,0 +1,7 @@
+# Donnees : le dossier est suivi, son contenu ne l'est pas
+data/*
+!data/.gitkeep
+
+# Fichiers systeme et temporaires
+.DS_Store
+*.save
