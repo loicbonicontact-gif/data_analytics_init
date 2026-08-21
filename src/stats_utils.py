@@ -1,37 +1,44 @@
-"""Basic statistical analysis of the sales dataset."""
-import pandas as pd
-from pathlib import Path
-
-DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "sales.csv"
+"""Sales transaction statistical analysis (analyser_ventes)."""
 
 
-def compute_stats(df, column="amount"):
-    """Return a dict of basic statistics for the given column."""
+def analyser_ventes(transactions):
+    """Analyze a list of sale amounts: clean, compute stats, detect outliers."""
+    valid = [amount for amount in transactions if amount > 0]
+
+    count = len(valid)
+    total = sum(valid)
+    mean = total / count if count else 0
+
+    sorted_values = sorted(valid)
+    if count == 0:
+        median = 0
+    elif count % 2 == 0:
+        median = (sorted_values[count // 2 - 1] + sorted_values[count // 2]) / 2
+    else:
+        median = sorted_values[count // 2]
+
+    variance = sum((x - mean) ** 2 for x in valid) / count if count else 0
+    std_dev = variance ** 0.5
+
+    outliers = [x for x in valid if x > 2 * mean]
+
     return {
-        "count": df[column].count(),
-        "mean": df[column].mean(),
-        "median": df[column].median(),
-        "min": df[column].min(),
-        "max": df[column].max(),
-        "std": df[column].std(),
+        "nombre_transactions": count,
+        "somme_totale": total,
+        "moyenne": mean,
+        "mediane": median,
+        "ecart_type": std_dev,
+        "maximum": max(valid) if valid else None,
+        "minimum": min(valid) if valid else None,
+        "outliers": outliers,
     }
 
 
-def print_stats(stats):
-    print("Sales amount statistics")
-    print("-" * 30)
-    for key, value in stats.items():
-        if isinstance(value, float):
-            print(f"{key:>8}: {value:.2f}")
-        else:
-            print(f"{key:>8}: {value}")
-
-
-def main():
-    df = pd.read_csv(DATA_PATH)
-    stats = compute_stats(df)
-    print_stats(stats)
-
-
 if __name__ == "__main__":
-    main()
+    sample_transactions = [150, 200, 90, 5000, -20, 0, 300, 250, 175, 800]
+    report = analyser_ventes(sample_transactions)
+
+    print("Rapport d'analyse des ventes")
+    print("-" * 30)
+    for key, value in report.items():
+        print(f"{key}: {value}")
