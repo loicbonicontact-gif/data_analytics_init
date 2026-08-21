@@ -1,5 +1,8 @@
 """Sales transaction statistical analysis (analyser_ventes)."""
 
+import csv
+from pathlib import Path
+
 
 def analyser_ventes(transactions):
     """Analyze a list of sale amounts: clean, compute stats, detect outliers."""
@@ -34,8 +37,15 @@ def analyser_ventes(transactions):
     }
 
 
+def charger_transactions(chemin_csv):
+    """Read the 'amount' column from a sales CSV file into a list of floats."""
+    with open(chemin_csv, newline="", encoding="utf-8") as f:
+        return [float(row["amount"]) for row in csv.DictReader(f)]
+
+
 if __name__ == "__main__":
-    sample_transactions = [150, 200, 90, 5000, -20, 0, 300, 250, 175, 800]
+    csv_path = Path(__file__).resolve().parent.parent / "data" / "sales.csv"
+    sample_transactions = charger_transactions(csv_path)
     report = analyser_ventes(sample_transactions)
 
     print("Rapport d'analyse des ventes")
